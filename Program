@@ -3,10 +3,9 @@ class SorryBoardGame
 { 
   public static void main (String[] args) 
     
-    
   { 
     int [] deckOfCards = new int [45];
-    //public ArrayList <Integer> cards = new ArrayList<Integer>();
+   
     
     int numOfPlayers, curPositionP1x,curPositionP1y, player1TurnValue;
     
@@ -22,7 +21,6 @@ class SorryBoardGame
       
     }
 
-    
     //board
     System.out.println("  "+"0"+ "  " +"1"+"  "+"2"+ "  " +"3"+"  "+"4"+ "  " +"5"+"  "+"6"+ "  " +"7"+"  "+"8"+ "  " +"9"+"  "+"0"+ "  " +"1"+"  "+ "2" +"  "+"3"+"  "+"4");
     for (int col = 0; col < 15; col++) 
@@ -88,7 +86,8 @@ class SorryBoardGame
     // draw a card
     int cardvalue;
     cardvalue = drawCard(deckOfCards);
-     System.out.println("card value is  "+cardvalue);
+   // System.out.println("card value is  "+cardvalue);
+    
   } 
   
   
@@ -111,9 +110,6 @@ class SorryBoardGame
     }  
     
   } 
-  
-  
-  
   
   
   // Method
@@ -211,11 +207,9 @@ class SorryBoardGame
           
       }
       
-      
     }
     return cards1; 
    
-    
   } // end of method setTheValue
   
   
@@ -228,14 +222,71 @@ class SorryBoardGame
   idx = new Random().nextInt(45);
   System.out.println("");
    System.out.println("random number is "+idx );
+
   value = cards[idx];
+  if (idx >=1 && idx <=5)
+  {
+    System.out.println("Card value is 1: Move 1 space forward");
+  }
+  
+  else if ( 
+           idx >5 && idx <=8)
+  {
+    System.out.println("Card value is 2: Move 2 spaces forward");
+  }
+  
+  else if (idx >8 && idx <=12)
+  {
+    System.out.println("Card value is 3: Move 3 spaces forward");
+  }
+  
+  else if (idx >12 && idx <=16)
+  {
+    System.out.println("Card value is 4: Move back 4 spaces");
+  }
+  
+  else if (idx >16 && idx <= 20)
+  {
+    System.out.println("Card value is 5: Move 5 spaces forward");
+  }
+  
+  else if (idx >20 && idx <= 24)
+  {
+    System.out.println("Card value is 7: Move 7 spaces forward");
+  }
+  
+  else if (idx >24 && idx <= 28)
+  {
+    System.out.println("Card value is 8: Move 8 spaces forward");
+  }
+  
+  else if (idx >28 && idx <= 32)
+  {
+    System.out.println("Card value is 10: Move 10 spaces forward");
+  }
+  
+  else if (idx >32 && idx <= 36)
+  {
+    System.out.println("Card value is 11: Move 11 spaces forward");
+  }
+  
+  else if (idx >36 && idx <= 40)
+  {
+    System.out.println("Card value is 12: Move 12 spaces forward");
+  }
+  
+  else  
+  {
+    System.out.println("Sorry, please go back to start");
+  }
+  
+  
   //cards.remove(idx);
     
   return value;
  }
-  
-  
-  
-  
+ 
 } //main
+ 
+
  
