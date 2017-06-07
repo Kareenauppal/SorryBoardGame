@@ -1,0 +1,241 @@
+import java.util.Random;
+class SorryBoardGame 
+{ 
+  public static void main (String[] args) 
+    
+    
+  { 
+    int [] deckOfCards = new int [45];
+    //public ArrayList <Integer> cards = new ArrayList<Integer>();
+    
+    int numOfPlayers, curPositionP1x,curPositionP1y, player1TurnValue;
+    
+    String[][] boardGame = new String [15][15]; 
+    for ( int row = 0; row < boardGame.length; row++) 
+    { 
+      for (int col = 0; col < boardGame[row].length; col++) 
+      { 
+        
+        boardGame[row][col] = " "; 
+        
+      } 
+      
+    }
+
+    
+    //board
+    System.out.println("  "+"0"+ "  " +"1"+"  "+"2"+ "  " +"3"+"  "+"4"+ "  " +"5"+"  "+"6"+ "  " +"7"+"  "+"8"+ "  " +"9"+"  "+"0"+ "  " +"1"+"  "+ "2" +"  "+"3"+"  "+"4");
+    for (int col = 0; col < 15; col++) 
+    {
+      boardGame[0][col]="O"; 
+      boardGame[14][col]="O";
+    }
+    for (int row = 0; row < 15; row++)
+    {
+      boardGame[row][0]="O";
+      boardGame[row][14]="O";
+    }
+    for (int col = 3; col<=3; col++) 
+    {
+      boardGame[0][2]="S";
+    }
+    
+    for (int col = 12; col<=12; col++) 
+    {
+      boardGame[14][12]="S";
+    }
+    
+    for (int row = 14; row<=14; row++) 
+    {
+      boardGame[3][14]="S";
+    }
+    
+    for (int row = 12; row<=12; row++) 
+    {
+      boardGame[12][0]="S";
+    }
+    
+    
+    for ( int row = 9; row <=13; row++)
+    {
+      
+      boardGame[row][12]="O";  
+    }
+    
+    for ( int col = 1; col<=5; col++)
+    {
+      
+      boardGame[12][col]="O"; 
+    }
+    
+    for ( int row = 1; row <= 5; row++)
+    {
+      boardGame[row][2]="O"; 
+    }
+    
+    for ( int col = 9; col <= 13; col++)
+    {
+      boardGame[3][col]="O"; 
+    }
+    
+    
+    printArray(boardGame); 
+    
+    //set the cards
+    deckOfCards = setTheValue();
+   
+    
+    // draw a card
+    int cardvalue;
+    cardvalue = drawCard(deckOfCards);
+     System.out.println("card value is  "+cardvalue);
+  } 
+  
+  
+  //--------------------------------methods -----------------------------------------
+  
+  //Method: BoardGame 
+  public static void printArray (String[][] ArrayToBePrinted) 
+  { 
+    int rows = ArrayToBePrinted.length; 
+    int cols = ArrayToBePrinted[0].length; 
+    for (int i = 0; i < rows; i++) 
+    { 
+      System.out.println(""); 
+      for (int j = 0; j < cols; j++) 
+      { 
+        
+        System.out.print("  "+ArrayToBePrinted[i][j]); 
+        
+      } 
+    }  
+    
+  } 
+  
+  
+  
+  
+  
+  // Method
+//  public static void yourMove (int moveValue)
+//  {
+//    int curPositionP1x = 12;
+//    int curPositionP1y = 14;
+//    int newx, newy;
+//    
+//    newy = curPositionP1y - moveValue;
+//    
+//    //System.out.println(newy);
+//    //printArray();
+//    
+//  }
+  
+  // Method - Pick up the card and the logic
+  public static int[] setTheValue ()
+  {
+    //String [] cards1 = new String [45];
+    int [] cards1 = new int[45];
+    
+    // instead of making 11 for loops, used the switch statement for better understanding
+    for (int i = 0; i <45; i++)
+    {
+      switch (i)
+      {
+        case 0 :
+        case 1 :
+        case 2 :
+        case 3:
+        case 4 : // assign first 5 cards to value 1
+          cards1[i] =  1; //"1 FWD"; // move forward 1 square
+          break;
+        case 5: 
+        case 6:
+        case 7:
+        case 8:
+          cards1[i] =  2; //"2 FWD"; // assign next 4 to value 2
+          break;
+        case 9: 
+        case 10:
+        case 11:
+        case 12:
+          cards1[i] = 3 ; //"3 FWD";
+          break;
+        case 13: 
+        case 14:
+        case 15:
+        case 16:
+          cards1[i] =  4 ; //"4 BWD";
+          break;
+        case 17: 
+        case 18:
+        case 19:
+        case 20:
+          cards1[i] =  5; //"5 FWD";
+          break;
+        case 21: 
+        case 22:
+        case 23:
+        case 24:
+          cards1[i] = 7 ; //"7 FWD"; // MORE LOGIC
+          break;
+        case 25: 
+        case 26:
+        case 27:
+        case 28:
+          cards1[i] = 8 ; //"8 FWD";
+          break;
+        case 29: 
+        case 30:
+        case 31:
+        case 32:
+          cards1[i] = 10 ; //"10 FWD"; // MORE LOGIC
+          break;
+        case 33: 
+        case 34:
+        case 35:
+        case 36:
+          cards1[i] =  11; //"11 FWD"; // MORE LOGIC
+          break;
+        case 37: 
+        case 38:
+        case 39:
+        case 40:
+          cards1[i] =  12 ; //"12 FWD";
+          break;
+        case 41: 
+        case 42:
+        case 43:
+        case 44:
+          cards1[i] = 0 ; //"Sorry"; // GO BACK TO START
+          break;
+          
+      }
+      
+      
+    }
+    return cards1; 
+   
+    
+  } // end of method setTheValue
+  
+  
+  // Drawing a random card from the given set
+ public static int drawCard(int[] cards){
+ 
+  int value, idx; 
+  
+  // get the card and return it into the main program
+  idx = new Random().nextInt(45);
+  System.out.println("");
+   System.out.println("random number is "+idx );
+  value = cards[idx];
+  //cards.remove(idx);
+    
+  return value;
+ }
+  
+  
+  
+  
+} //main
+ 
