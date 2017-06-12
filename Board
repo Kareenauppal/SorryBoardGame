@@ -1,31 +1,33 @@
-// board class
 package KareenaUppal;
 
 public class Board {
- // Defining a 2D array to represent the board - This is used to print the board  
- // B,Y,G,R - COLORS;    S - START;  SL - SLIDE POINTS; SF - SAFE ZONE;  H - HOME;   O - COMMON PATH
+ // Defining a 2D array to represent the board - This is used to print the board
+  /* B = Blue; BS = Blue Start; BSZ = Blue Safe Zone; BH = Blue Home
+     Y = Yellow; YS = Yellow Start; YSZ = Yellow Safe Zone; YH = Yellow Home
+     G = Green; GS = Green Start; GSZ = Green Safe Zone; BH = Green Home
+     R = Red; RS = Red Start; RSZ = Red Safe Zone; RH = Red Home
+  */
+//     SL - SLIDE POINTS; O - COMMON PATH
 
- public static final String [][]board = {
+ public static final String [][]board = // this is a public static "final" because the board will always remain the same
+ {
    {"O",   "YSL", "O",   "O",   "YSL", "O",   "O",   "O", "O", "YSL", "O",   "O",   "O",   "YSL", "O",   "O"}, 
-   {"O",   " ",   "YSF", " ",   "YS",  " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "GSL"},
-   {"BSL", " ",   "YSF", " ",   " ",   " ",   " ",   " ", " ", "GH",  "GSF", "GSF", "GSF", "GSF", "GSF", "O"},
-   {"O",   " ",   "YSF", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
-   {"O",   " ",   "YSF", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   "GS",  "GSL"},
-   {"O",   " ",   "YSF", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
+   {"O",   " ",   "YSZ", " ",   "YS",  " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "GSL"},
+   {"BSL", " ",   "YSZ", " ",   " ",   " ",   " ",   " ", " ", "GH",  "GSZ", "GSZ", "GSZ", "GSZ", "GSZ", "O"},
+   {"O",   " ",   "YSZ", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
+   {"O",   " ",   "YSZ", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   "GS",  "GSL"},
+   {"O",   " ",   "YSZ", " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
    {"BSL", " ",   "YH",  " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
    {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
    {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   " ",   " ",   "O"},
    {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RH",  " ",   "GSL"},
-   {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSF", " ",   "O"},
-   {"BSL", "BS",  " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSF", " ",   "O"},
-   {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSF", " ",   "O"},
-   {"O",   "BSF", "BSF", "BSF", "BSF", "BSF", "BH",  " ", " ", " ",   " ",   " ",   " ",   "RSF", " ",   "GSL"},
-   {"BSL", " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   "RS",  " ",   "RSF", " ",   "O"},
+   {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSZ", " ",   "O"},
+   {"BSL", "BS",  " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSZ", " ",   "O"},
+   {"O",   " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   " ",   " ",   "RSZ", " ",   "O"},
+   {"O",   "BSZ", "BSZ", "BSZ", "BSZ", "BSZ", "BH",  " ", " ", " ",   " ",   " ",   " ",   "RSZ", " ",   "GSL"},
+   {"BSL", " ",   " ",   " ",   " ",   " ",   " ",   " ", " ", " ",   " ",   "RS",  " ",   "RSZ", " ",   "O"},
    {"O",   "O",   "RSL", "O",   "O",   "O",   "RSL", "O", "O", "O",   "O",   "RSL", "O",   "O",   "RSL", "O"},
-   };
- 
- 
- 
-    
-        
+   
+ };
+      
 } //main
