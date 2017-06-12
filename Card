@@ -1,0 +1,49 @@
+// card
+package KareenaUppal;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Card {
+    // Set up an arraylist to store the cards, as ot permits removing each element from the list
+// public ArrayList <Integer> cards = new ArrayList<Integer>();
+ 
+ // Setting up the card deck
+        // 0 - represent SORRY card and the rest of the numbers have normal meanings
+ public void shuffle(){
+  // 4 set of 11 cards required, so we need a loop that iterates 4 times
+  for(int i = 0; i<4; i++){
+   // 11 cards in each set required, so we need a loop that iterates 11 times (13 - 2 cards that shouldn't be present)
+   for(int j=0; j<13; j++){
+    // Avoiding 6 and 9 cards
+    if((j == 6)||(j == 9)){
+     continue;
+    }
+    // Add the other cards to the list 
+    else{
+     cards.add(j); // adding the elements (numbers) to the array
+    }
+   }
+  }
+ }
+ 
+ // Drawing a random card from the given set
+ public int drawCard(){
+  int value, idx; 
+        // if the current deck is used up, reshuffle
+  if(cards.isEmpty()){
+   shuffle();
+  }
+        
+        // get the card and return it into the main program
+  // generate a random number between 0 and the total number of cards
+  idx = new Random().nextInt(45);
+  // read the card at that random index
+  value = cards.get(idx);
+  // remove the card from the list
+  cards.remove(idx);
+  // Return the card value
+  return value;
+ }
+ 
+}
