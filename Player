@@ -1,0 +1,256 @@
+// Player
+package KareenaUppal;
+
+public class Player 
+{
+  // Class variables for the pawns and counter for how many pawns are at the home position
+  Pawn[] p; // p is a variable of type pawn class ; we need 4 pawns , so we declared as array
+  int playerId; 
+  
+// Constructor - parameterized which has the playerId as the parameter
+  public Player(int playerNum)
+  {   
+// declaring an array of objects
+    p = new Pawn[4]; 
+    playerId = playerNum;
+    // Set up the path for each pawn to follow - since each player has different start and home, 
+    // we have to specify paths for all players
+    // The second argument is the pawnId
+    p[0] = new Pawn(playerNum,1);
+    p[1] = new Pawn(playerNum,2);
+    p[2] = new Pawn(playerNum,3);
+    p[3] = new Pawn(playerNum,4);
+  }
+  
+  // Method to check how many the pawns of the player has reached home
+  public int checkHome()
+  {
+    boolean check;
+    // set the counter of the number of pawns at home position to zero
+    int c = 0; 
+    // calls the reachedHome function in pawn class to check if a given pawn is at home position
+    for(int i = 0; i<4; i++)
+    {
+      // call the function for each pawn
+      check = p[i].reachedHome();
+      // Increment the counter if the pawn is at home position
+      if(check)
+      {
+        c++;
+      }
+    }
+    // Return the total number of pawns at home position
+    return c;
+  }
+  
+  
+  // Method to play the game - based on the pawn positions of the same player, decisions are taken on which pawn to move
+  public void play(int card, Player other1, Player other2, Player other3, Card c){
+    // If the card drawn is 1,2 or 0 we can move a pawn from the start position. So, we try to start off 
+    // a new pawn if we draw any of those cards instead of moving an already started one. If that is not possible,
+    // do the normal movement for an already started pawn
+    if(card == 1)
+    {
+      // Checking if the first pawn is at start position
+      if(p[0].steps == 0)
+      {   // first pawn is at home
+        p[0].move(card, this, other1, other2, other3);
+      }
+      // if the second pawn is at start position and none of the previous pawns occupy the next position, start it
+      else if((p[1].steps == 0)&&(p[0].steps != 1))
+      {    // second pawn is home , and first pawn is not at that position
+        p[1].move(card, this, other1, other2, other3);
+      }
+      // if the third pawn is at start position and none of the previous pawns occupy the next position, start it
+      else if((p[2].steps == 0)&&(p[1].steps != 1))
+      {
+        p[2].move(card, this, other1, other2, other3);
+      }
+      // if the fourth pawn is at start position and none of the previous pawns occupy the next position, start it
+      else if((p[3].steps == 0)&&(p[2].steps != 1))
+      {
+        p[3].move(card, this, other1, other2, other3);
+      }
+      // If none of the pawns are at starting position, move the pawns normally
+      else{
+        // If pawn 1 is not at home yet, move it
+        if((Pawn.total - p[0].steps)>card)
+        { // 65 - how many steps the p0 has moved (the difference has to be more than the card value to move)
+          p[0].move(card, this, other1, other2, other3);
+        }
+        // If pawn is not home and pawn 2 is not at home yet, move it
+        else if((Pawn.total - p[1].steps)>= card)
+        {
+          p[1].move(card, this, other1, other2, other3);
+        }
+        // If pawn 1 & 2 are home and pawn 3 is not at home yet, move it
+        else if((Pawn.total - p[2].steps)>= card)
+        {
+          p[2].move(card, this, other1, other2, other3);
+        }
+        // If all previous pawns are home and pawn 4 is not at home yet, move it
+        else if((Pawn.total - p[3].steps)>= card)
+        {
+          p[3].move(card, this, other1, other2, other3);
+        }
+        // If no movement is possible, forfeit the turn
+        else
+        {
+          return;
+        }
+      }
+    }
+    else if(card == 2)
+    {
+      // Checking if the first pawn is at start position
+      if(p[0].steps == 0){
+        p[0].move(card, this, other1, other2, other3);
+      }
+      // if the second pawn is at start position and none of the previous pawns occupy start+2 position, start it
+      else if((p[1].steps == 0)&&(p[0].steps != 2))
+      {
+        p[1].move(card, this, other1, other2, other3);
+      }
+      // if the third pawn is at start position and none of the previous pawns occupy start+2 position, start it
+      else if((p[2].steps == 0)&&((p[1].steps != 2)&&(p[0].steps != 2)))
+      {
+        p[2].move(card, this, other1, other2, other3);
+      }
+      // if the fourth pawn is at start position and none of the previous pawns occupy start+2 position, start it
+      else if((p[3].steps == 0)&&((p[0].steps != 2)&&(p[1].steps != 2)&&(p[2].steps != 2)))
+      {
+        p[3].move(card, this, other1, other2, other3);
+      }
+      // If none of the pawns are at starting position, move the pawns normally
+      else
+      {
+        // If pawn 1 is not at home yet, move it
+        if((Pawn.total - p[0].steps)>= card)
+        {
+          p[0].move(card, this, other1, other2, other3);
+        }
+        // If pawn 1 is home and pawn 2 is not at home yet, move it
+        else if((Pawn.total - p[1].steps)>= card)
+        {
+          p[1].move(card, this, other1, other2, other3);
+        }
+        // If pawn 1 & 2 are home and pawn 3 is not at home yet, move it
+        else if((Pawn.total - p[2].steps)>= card)
+        {
+          p[2].move(card, this, other1, other2, other3);
+        }
+        // If all previous pawns are home and pawn 4 is not at home yet, move it
+        else if((Pawn.total - p[3].steps)>= card)
+        {
+          p[3].move(card, this, other1, other2, other3);
+        }
+        // If no movement is possible, draw a new card
+        else
+        {
+          card = c.drawCard();
+          this.play(card, other1, other2, other3, c);
+        }
+      }
+    }
+    // If the SORRY card is drawn
+    else if(card == 0)
+    {
+      // Checking if the first pawn is at start position, if yes, try to move it
+      if(p[0].steps == 0)
+      {
+        p[0].move(card, this, other1, other2, other3);
+      }
+      // Checking if the second pawn is at start position, if yes, try to move it
+      else if(p[1].steps == 0)
+      {
+        p[1].move(card, this, other1, other2, other3);
+      }
+      // Checking if the third pawn is at start position, if yes, try to move it
+      else if(p[2].steps == 0)
+      {
+        p[2].move(card, this, other1, other2, other3);
+      }
+      // Checking if the fourth pawn is at start position, if yes, try to move it
+      else if(p[3].steps == 0)
+      {
+        p[3].move(card, this, other1, other2, other3);
+      }
+      // if no movement is possible, forfeit the turn
+    }
+    // Card 4 causes a backward movement
+    else if(card == 4)
+    {
+      // check if the pawn has moved 4 positions
+      if((p[0].steps)>= card)
+      {
+        p[0].move(card, this, other1, other2, other3);
+      }
+      // check if the pawn has moved 4 positions
+      else if((p[1].steps)>= card)
+      {
+        p[1].move(card, this, other1, other2, other3);
+      }
+      // check if the pawn has moved 4 positions
+      else if((p[2].steps)>= card)
+      {
+        p[2].move(card, this, other1, other2, other3);
+      }
+      // check if the pawn has moved 4 positions
+      else if((p[3].steps)>= card)
+      {
+        p[3].move(card, this, other1, other2, other3);
+      }
+      // If no movement is possible, forfeit the turn
+      else
+      {
+        return;
+      }
+    }
+    // For all other cards drawn, perform the normal movements
+    else
+    {
+      // if pawn 1 is not at start position and can move the value specified by the card
+      if(((Pawn.total - p[0].steps)>= card)&&(p[0].steps != 0))
+      {
+        p[0].move(card, this, other1, other2, other3);
+      }
+      // if pawn 2 is not at start position and can move the value specified by the card
+      else if(((Pawn.total - p[1].steps)>=card)&&(p[1].steps != 0))
+      {
+        p[1].move(card, this, other1, other2, other3);
+      }
+      // if pawn 3 is not at start position and can move the value specified by the card
+      else if(((Pawn.total - p[2].steps)>=card)&&(p[2].steps != 0))
+      {
+        p[2].move(card, this, other1, other2, other3);
+      }
+      // if pawn 4 is not at start position and can move the value specified by the card
+      else if(((Pawn.total - p[3].steps)>=card)&&(p[3].steps != 0))
+      {
+        p[3].move(card, this, other1, other2, other3);
+      }
+      // If no movement is possible, forfeit the turn
+      else
+      {
+        return;
+      }
+    }
+  }
+  
+  //Method to return the location of all the pawns in the Player object - to be used for swapping
+  public int[] location()
+  {
+    // Create an array of 8 elements that can store the row and column position of each pawn
+    int []arr = new int[8];
+    int count = 0;
+    // for each pawn store the row as the first element and corresponding column as the next element
+    for(int i=0; i<4; i++)
+    {
+      arr[count++] = p[i].row[p[i].steps];
+      arr[count++] = p[i].col[p[i].steps];
+    }
+    // return the location array
+    
+    return arr;
+  }
+}
