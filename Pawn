@@ -1,330 +1,365 @@
 // Pawn
 package KareenaUppal;
 
-public class Pawn {
- // Class variable to store the final step value is defined as TOTAL
- // Declare variables to store the steps moved, row and col id for each step, and a variable to store pawnId
- static final int TOTAL = 65;
- int steps, row[], col[]; 
-        int pawnId;
- 
- // Constructor for the pawn class
- public Pawn(int playerNum, int id){
-  steps = 0;
-        pawnId = id;
-  // Initialize the size of the row and col to be 66
-  row = new int[TOTAL+1];
-  col = new int[TOTAL+1];
-  // call the setPath method to set the path to be followed by each pawn
-  setPath(playerNum);
- }
- 
- // method to initialize the path for each player
- public void setPath(int playerNum){
-  // Set a step counter to zero
-  int count = 0; 
+public class Pawn 
+{
+  // Class variable to store the final step value is defined as total
+  // Declare variables to store the steps moved, row and col id for each step, and a variable to store pawnId
+  static final int total = 65;
+  int steps, row[], col[]; 
+  int pawnId;
   
-  // for player 1
-  // Defining the path for player blue
-  if(playerNum == 1){
-   // Loop stops once the counter reaches 65 or Home position
-   while(count <= TOTAL){
-    if(count == 0){
-     row[count] = 11;
-     col[count] = 1;
-    }
-    else if(count>0 && count<=12){
-     row[count] = 11 - count + 1;
-     col[count] = 0;
+  // Constructor for the pawn class
+  public Pawn(int playerNum, int id)
+  {
+    steps = 0;
+    pawnId = id;
+    // Initialize the size of the row and col to be 66
+    row = new int[total+1];
+    col = new int[total+1];
+    // call the setPath method to set the path to be followed by each pawn
+    setPath(playerNum);
+  }
   
-    }
-    else if(count>12 && count<=27){
-     row[count] = 0;
-     col[count] = count - 12;
-    }
-    else if(count>27 && count<=42){
-     row[count] = count - 27;
-     col[count] = 15;
-    }
-    else if(count>42 && count<=57){
-     row[count] = 15;
-     col[count] = 15 - (count - 42);
-    }
-    else if(count == 58){
-     row[count] = 14;
-     col[count] = 0;
-    }
-    else if(count>58 && count<=65){
-     row[count] = 13;
-     col[count] = count - 59;
-    }
-    // increment the counter
-    count++;
-   }
-  }
-  // for player 2
-  else if(playerNum == 2){
-   // Loop stops once the counter reaches 65 or Home position
-   while(count <= TOTAL){
-    if(count == 0){
-     row[count] = 1;
-     col[count] = 4;
-    }
-    else if(count>0 && count<=12){
-     row[count] = 0;
-     col[count] = 3 + count;
-    }
-    else if(count>12 && count<=27){
-     row[count] = count - 12;
-     col[count] = 15;
-    }
-    else if(count>27 && count<=42){
-     row[count] = 15;
-     col[count] = 15 - (count - 27);
-    }
-    else if(count>42 && count<=57){
-     row[count] = 15 - (count - 42);
-     col[count] = 0;
-    }
-    else if(count == 58){
-     row[count] = 0;
-     col[count] = 1;
-    }
-    else if(count>58 && count<=65){
-     row[count] = count - 59;
-     col[count] = 2;
-    }
-    // increment the counter
-    count++;
-   }
-  }
-  // for player 3
-  else if(playerNum == 3){
-   // Loop stops once the counter reaches 65 or Home position
-   while(count <= TOTAL){
-    if(count == 0){
-     row[count] = 4;
-     col[count] = 14;
-    }
-    else if(count>0 && count<=12){
-     row[count] = count + 3;
-     col[count] = 15;
-    }
-    else if(count>12 && count<=27){
-     row[count] = 15;
-     col[count] = 15 - (count - 12);
-    }
-    else if(count>27 && count<=42){
-     row[count] = 15 - (count - 27);
-     col[count] = 0;
-    }
-    else if(count>42 && count<=57){
-     row[count] = 0;
-     col[count] = count - 42;
-    }
-    else if(count == 58){
-     row[count] = 1;
-     col[count] = 15;
-    }
-    else if(count>58 && count<=65){
-     row[count] = 2;
-     col[count] = 15 - (count - 59);
-    }
-    // increment the counter
-    count++;
-   }
-  }
-  // for player 4
-  else if(playerNum == 4){
-   // Loop stops once the counter reaches 65 or Home position
-   while(count <= TOTAL){
-    if(count == 0){
-     row[count] = 14;
-     col[count] = 11;
-    }
-    else if(count>0 && count<=12){
-     row[count] = 15;
-     col[count] = 12 - count;
-    }
-    else if(count>12 && count<=27){
-     row[count] = 15 - (count - 12);
-     col[count] = 0;
-    }
-    else if(count>27 && count<=42){
-     row[count] = 0;
-     col[count] = count - 27;
-    }
-    else if(count>42 && count<=57){
-     row[count] = count - 42;
-     col[count] = 15;
-    }
-    else if(count == 58){
-     row[count] = 15;
-     col[count] = 14;
-    }
-    else if(count>58 && count<=65){
-     row[count] = 15 - (count - 59);
-     col[count] = 13;
-    }
-    // increment the counter
-    count++;
-   }
-  }
- }
- 
- 
- public void move(int value, Player obj, Player other1, Player other2, Player other3){
-        int temp;
-        // Checking if the pawn is at start position
-  if(steps == 0){
-   // Move the pawn if it satisfies the conditions
-   if((value == 1)||(value == 2)){
-    // Store the destination in a temp variable
-    temp = steps + value;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
-    }
-   }
-   if(value == 0){
-    // Step for replacing opponents pawn by your own
-    //swap();
+  // method to initialize the path for each player
+  public void setPath(int playerNum)
+  {
+    // Set a step counter to zero
+    int count = 0; 
     
-   }
-  }
-  // If the card value is 4, you have to move backward
-        else if(value == 4){
-   // If you can move backward for 4 position within the permitted area
-   if(steps>= value){
-    // Store the destination in a temp variable
-    temp = steps - value;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
+    // for player 1
+    // Defining the path for player blue
+    if(playerNum == 1)
+    {
+      // Loop stops once the counter reaches 65 or Home position
+      while(count <= total)
+      {
+        if(count == 0)
+        {
+          row[count] = 11;
+          col[count] = 1;
+        }
+        else if(count>0 && count<=12)
+        {
+          row[count] = 11 - count + 1;
+          col[count] = 0;
+          
+        }
+        else if(count>12 && count<=27)
+        {
+          row[count] = 0;
+          col[count] = count - 12;
+        }
+        else if(count>27 && count<=42)
+        {
+          row[count] = count - 27;
+          col[count] = 15;
+        }
+        else if(count>42 && count<=57)
+        {
+          row[count] = 15;
+          col[count] = 15 - (count - 42);
+        }
+        else if(count == 58)
+        {
+          row[count] = 14;
+          col[count] = 0;
+        }
+        else if(count>58 && count<=65)
+        {
+          row[count] = 13;
+          col[count] = count - 59;
+        }
+        // increment the counter
+        count++;
+      }
     }
-   }
-  }
-  // There are two options for card 10
-        else if(value == 10){
-   // Move forward by 10 position
-   if(value <= (TOTAL - steps)){
-    // Store the destination in a temp variable
-    temp = steps + value;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
+    // for player 2
+    else if(playerNum == 2)
+    {
+      // Loop stops once the counter reaches 65 or Home position
+      while(count <= total)
+      {
+        if(count == 0)
+        {
+          row[count] = 1;
+          col[count] = 4;
+        }
+        else if(count>0 && count<=12)
+        {
+          row[count] = 0;
+          col[count] = 3 + count;
+        }
+        else if(count>12 && count<=27)
+        {
+          row[count] = count - 12;
+          col[count] = 15;
+        }
+        else if(count>27 && count<=42)
+        {
+          row[count] = 15;
+          col[count] = 15 - (count - 27);
+        }
+        else if(count>42 && count<=57)
+        {
+          row[count] = 15 - (count - 42);
+          col[count] = 0;
+        }
+        else if(count == 58)
+        {
+          row[count] = 0;
+          col[count] = 1;
+        }
+        else if(count>58 && count<=65)
+        {
+          row[count] = count - 59;
+          col[count] = 2;
+        }
+        // increment the counter
+        count++;
+      }
     }
-   }
-   // Go backward by 1 position
-   else{
-    // Store the destination in a temp variable
-    temp = steps - 1;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
+    // for player 3
+    else if(playerNum == 3)
+    {
+      // Loop stops once the counter reaches 65 or Home position
+      while(count <= total)
+      {
+        if(count == 0)
+        {
+          row[count] = 4;
+          col[count] = 14;
+        }
+        else if(count>0 && count<=12)
+        {
+          row[count] = count + 3;
+          col[count] = 15;
+        }
+        else if(count>12 && count<=27)
+        {
+          row[count] = 15;
+          col[count] = 15 - (count - 12);
+        }
+        else if(count>27 && count<=42)
+        {
+          row[count] = 15 - (count - 27);
+          col[count] = 0;
+        }
+        else if(count>42 && count<=57)
+        {
+          row[count] = 0;
+          col[count] = count - 42;
+        }
+        else if(count == 58)
+        {
+          row[count] = 1;
+          col[count] = 15;
+        }
+        else if(count>58 && count<=65)
+        {
+          row[count] = 2;
+          col[count] = 15 - (count - 59);
+        }
+        // increment the counter
+        count++;
+      }
     }
-   }
-  }
-  // If the card is 11, there are two options
-        else if(value == 11){
-   // To move forward by 11 spaces
-   if(value <= (TOTAL - steps)){
-    // Store the destination in a temp variable
-    temp = steps + value;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
+    // for player 4
+    else if(playerNum == 4)
+    {
+      // Loop stops once the counter reaches 65 or Home position
+      while(count <= total)
+      {
+        if(count == 0)
+        {
+          row[count] = 14;
+          col[count] = 11;
+        }
+        else if(count>0 && count<=12)
+        {
+          row[count] = 15;
+          col[count] = 12 - count;
+        }
+        else if(count>12 && count<=27)
+        {
+          row[count] = 15 - (count - 12);
+          col[count] = 0;
+        }
+        else if(count>27 && count<=42)
+        {
+          row[count] = 0;
+          col[count] = count - 27;
+        }
+        else if(count>42 && count<=57)
+        {
+          row[count] = count - 42;
+          col[count] = 15;
+        }
+        else if(count == 58)
+        {
+          row[count] = 15;
+          col[count] = 14;
+        }
+        else if(count>58 && count<=65)
+        {
+          row[count] = 15 - (count - 59);
+          col[count] = 13;
+        }
+        // increment the counter
+        count++;
+      }
     }
-   }
-   // Swap the position a pawn of another color with your own 
-   else{
-    //swap();
-   }
   }
-  else{
-   if(value <= (TOTAL - steps)){
-    // Store the destination in a temp variable
-    temp = steps + value;
-    // If sliding is to be performed, do that
-    temp = slide(temp);
-    // Check if a pawn of the same color is at the destination
-    if(!pawnPresent(temp, obj)){
-     // If the pawn is free to move assign the new position to it
-     steps = temp;
-     // Swap if there is the presence of a pawn of another color at the destination
-     //swap();
-    }
-   }
-  }
-                
- }
- 
- // Checking if the pawn reached home
- public boolean reachedHome(){
-            return (steps == TOTAL);    
- }
-        
- // method to check if there is a pawn of the same player present at the 
- // destination
- public boolean pawnPresent(int temp, Player obj){
-  // obj variable represent the current player
-  boolean check = false;
-  int id = pawnId;
-  // Check for other pawns by checking their pawnId
-  for(int i = 0; i<4; i++){
-   if(obj.p[i].pawnId != id){
-    // If another pawn is at the destination and not at home position, return true
-    if((obj.p[i].steps == temp)&&(temp != 65)){
-     check = true;
-     break;
-    }
-   }
-  }
-  return check;
- }
-        
- // Method to slide
- public int slide(int temp){
-  // The numbers denote the step position of the sliding arrows for every pawn
   
-  // Slides by 3 spaces
-  if((temp==13)||(temp==28)||(temp==43)){
-   temp = temp + 3;
-  }
-  // slides by 4 spaces
-  else if((temp==21)||(temp==36)||(temp==51)){
-   temp = temp + 4;
-  }
-  // return the new destination
-  return temp;
- }
- 
- 
-            
+  
+  public void move(int value, Player obj, Player other1, Player other2, Player other3)
+  {
+    int temp;
+    // Checking if the pawn is at start position
+    if(steps == 0){
+      // Move the pawn if it satisfies the conditions
+      if((value == 1)||(value == 2)){
+        // Store the destination in a temp variable
+        temp = steps + value;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+          
+        }
+      }
+      if(value == 0){
+        // Step for replacing opponents pawn by your own
+        //swap();
         
+      }
+    }
+    // If the card value is 4, you have to move backward
+    else if(value == 4){
+      // If you can move backward for 4 position within the permitted area
+      if(steps>= value){
+        // Store the destination in a temp variable
+        temp = steps - value;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+         
+        }
+      }
+    }
+    // There are two options for card 10
+    else if(value == 10){
+      // Move forward by 10 position
+      if(value <= (total - steps)){
+        // Store the destination in a temp variable
+        temp = steps + value;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+          // Swap if there is the presence of a pawn of another color at the destination
+          //swap();
+        }
+      }
+      // Go backward by 1 position
+      else{
+        // Store the destination in a temp variable
+        temp = steps - 1;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+          // Swap if there is the presence of a pawn of another color at the destination
+          //swap();
+        }
+      }
+    }
+    // If the card is 11, there are two options
+    else if(value == 11){
+      // To move forward by 11 spaces
+      if(value <= (total - steps)){
+        // Store the destination in a temp variable
+        temp = steps + value;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+          // Swap if there is the presence of a pawn of another color at the destination
+          //swap();
+        }
+      }
+      // Swap the position a pawn of another color with your own 
+      else{
+        //swap();
+      }
+    }
+    else{
+      if(value <= (total - steps)){
+        // Store the destination in a temp variable
+        temp = steps + value;
+        // If sliding is to be performed, do that
+        temp = slide(temp);
+        // Check if a pawn of the same color is at the destination
+        if(!pawnPresent(temp, obj)){
+          // If the pawn is free to move assign the new position to it
+          steps = temp;
+         
+        }
+      }
+    }
+    
+  }
+  
+  // Checking if the pawn reached home
+  public boolean reachedHome(){
+    return (steps == total);    
+  }
+  
+  // method to check if there is a pawn of the same player present at the destination
+
+  public boolean pawnPresent(int temp, Player obj){
+    // obj variable represent the current player
+    boolean check = false;
+    int id = pawnId;
+    // Check for other pawns by checking their pawnId
+    for(int i = 0; i<4; i++){
+      if(obj.p[i].pawnId != id){
+        // If another pawn is at the destination and not at home position, return true
+        if((obj.p[i].steps == temp)&&(temp != 65)){
+          check = true;
+          break;
+        }
+      }
+    }
+    return check;
+  }
+  
+  // Method to slide
+  public static int slide(int temp)
+  {
+    // The numbers denote the step position of the sliding arrows for every pawn
+    
+    // Slides by 3 spaces
+    if((temp==13)||(temp==28)||(temp==43)){
+      temp = temp + 3;
+    }
+    // slides by 4 spaces
+    else if((temp==21)||(temp==36)||(temp==51)){
+      temp = temp + 4;
+    }
+    // return the new destination
+    return temp;
+  }
+ 
 }
