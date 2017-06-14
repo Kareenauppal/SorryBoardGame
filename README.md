@@ -34,6 +34,9 @@ GAME RULES:
 
 5. Get all of your pawns to the HOME space to win the game - To win Sorry, you need to get all of your pawns to the home space
 
+Instead of creating one whole program, create seperate classes for something specific (board, card, pawn and player) and have a main program
+
+
 
 
 
