@@ -1,4 +1,4 @@
-// main game
+
 package KareenaUppal; // multiple files
 
 public class SorryBoardGame 
@@ -13,8 +13,10 @@ public class SorryBoardGame
         Player red = new Player(4);
   
   // Print out the board
-        for(int i =0; i<16; i++){
-            for(int j = 0; j<16; j++){
+        for(int i =0; i<16; i++)
+        {
+            for(int j = 0; j<16; j++)
+            {
                 System.out.printf("%-5s",Board.board[i][j]);
             }
             System.out.println();
@@ -25,55 +27,58 @@ public class SorryBoardGame
         c.shuffle();
         
         
-//        // To check the path coordinates for each player
-//        for(int i =0; i<66; i++){
-//            System.out.printf("%d,%d\t%d,%d\t%d,%d\t%d,%d\n",red.p[0].row[i],red.p[0].col[i],
-//                red.p[1].row[i],red.p[1].col[i],red.p[2].row[i],red.p[2].col[i],red.p[3].row[i],red.p[3].col[i]);
-//        }
-        
-        
         // Game play loop. Have a boolean variable to check if any player won and 
         // a counter variable to facilitate 4 players to play in each cycle. 
         boolean anybodyWin = false;
         int count = 1; // count tells you who's turn it is
         int card;
         
-        while(!anybodyWin){
+        while(!anybodyWin)
+        {
    // Draw a card
             card = c.drawCard();
    // If it is the first player's turn, implment the following block
-            if(count == 1){
+            if(count == 1)
+            {
     // call the play method
                 blue.play(card, yellow, green, red, c); // c= card object
     // check if all the pawns are home. If yes, change the anybodyWin variable to true so that
     // the loop won't execute again
-                if(blue.checkHome() == 4){ // checking if all the 4 pawns are home
+                if(blue.checkHome() == 4)
+                { // checking if all the 4 pawns are home
                     anybodyWin = true;
                 }
             }
    // Second player's turn
-            else if(count == 2){
+            else if(count == 2)
+            {
                 yellow.play(card, green, red, blue, c);
-                if(yellow.checkHome() == 4){
+                if(yellow.checkHome() == 4)
+                {
                     anybodyWin = true;
                 }                
             }
    // Third player's turn
-            else if(count == 3){
+            else if(count == 3)
+            {
                 green.play(card, red, blue, yellow, c);
-                if(green.checkHome() == 4){
+                if(green.checkHome() == 4)
+                {
                     anybodyWin = true;
                 }
             }
    // Fourth player's turn
-            else if(count == 4){
+            else if(count == 4)
+            {
                 red.play(card, blue, yellow, green, c);
-                if(red.checkHome() == 4){
+                if(red.checkHome() == 4)
+                {
                     anybodyWin = true;
                 }                
             }      
    //Since we have only 4 players, the turn counter is reset after the fourth turn
-            if(count == 4){
+            if(count == 4)
+            {
                 count = 0;
             }       
    // Increment the counter after each turn
