@@ -1,12 +1,13 @@
-// card
+// Card
 package KareenaUppal;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Card {
+public class Card 
+{
     // Set up an arraylist to store the cards, as ot permits removing each element from the list
-// public ArrayList <Integer> cards = new ArrayList<Integer>();
+ public ArrayList <Integer> cards = new ArrayList<Integer>();
  
  // Setting up the card deck
         // 0 - represent SORRY card and the rest of the numbers have normal meanings
@@ -20,7 +21,8 @@ public class Card {
      continue;
     }
     // Add the other cards to the list 
-    else{
+    else
+    {
      cards.add(j); // adding the elements (numbers) to the array
     }
    }
@@ -28,16 +30,18 @@ public class Card {
  }
  
  // Drawing a random card from the given set
- public int drawCard(){
+ public int drawCard()
+ {
   int value, idx; 
         // if the current deck is used up, reshuffle
-  if(cards.isEmpty()){
+  if(cards.isEmpty())
+  {
    shuffle();
   }
         
         // get the card and return it into the main program
   // generate a random number between 0 and the total number of cards
-  idx = new Random().nextInt(45);
+  idx = new Random().nextInt(cards.size());
   // read the card at that random index
   value = cards.get(idx);
   // remove the card from the list
