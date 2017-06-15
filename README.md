@@ -36,6 +36,10 @@ GAME RULES:
 
 Instead of creating one whole program, create seperate classes for something specific (board, card, pawn and player) and have a main program
 
+For board: Print out the actaul boards
+For card: Have two methods, one for setting up the cards and another for drawing a card - random number generator
+For pawn: Have a method to initialize the path for each player, a method for the movement of each card, method to check if each pawn reached home (how they win) and a method to slide
+For player: Have a method to check how many of the pawns of the player have reached home, method to play the game ( tell what each card is suppose to do) and a method to return the location of all the pawns in the Player object
 
 
 
