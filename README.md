@@ -2,10 +2,10 @@
 SET UP:
 Enter everyones name and assign them a specific color (Blue, Red, Green or Yellow)
 Figure out who will go first (Random number Generator)
-player1 = p1
-player2 = p2
-player3 = p3
-player4 = p4
+player blue = p1
+player yellow = p2
+player green = p3
+player red = p4
 Make a gameBoard // Create a method for this
 There are 11 different playing cards this game (create a random generator for each card and assign what each one does)
 
